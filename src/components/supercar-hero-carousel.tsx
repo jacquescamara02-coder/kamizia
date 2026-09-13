@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { products } from "@/lib/catalog";
+import ferrariImage from "@/assets/hero-supercar-ferrari.jpg";
+import audiImage from "@/assets/hero-supercar-audi.jpg";
+import lexusImage from "@/assets/hero-supercar-lexus.jpg";
 
-const preferredSlugs = ["ferrari-roma-spider", "audi-rs5", "lexus-lx600-b6"];
-
-const slides = preferredSlugs.flatMap((slug) => {
-  const product = products.find((item) => item.slug === slug);
-  return product ? [product] : [];
-});
+const slides = [
+  { slug: "ferrari-roma-spider", name: "Ferrari Roma Spider", image: ferrariImage },
+  { slug: "audi-rs5", name: "Audi RS5", image: audiImage },
+  { slug: "lexus-lx600-b6", name: "Lexus LX 600", image: lexusImage },
+];
 
 export function SupercarHeroCarousel() {
   const [active, setActive] = useState(0);
