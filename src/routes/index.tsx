@@ -5,6 +5,7 @@ import cataloguePdf from "@/assets/catalogue-kamizia.pdf.asset.json";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/product-card";
 import { products, whatsappUrl } from "@/lib/catalog";
+import { useEffect, useRef, useState } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
@@ -30,6 +31,30 @@ const promises: Array<[LucideIcon, string, string]> = [
   [Globe2,"Présence régionale","Un interlocuteur pour le Burkina Faso et la Côte d'Ivoire."],
 ];
 
+function CountUp({ value, suffix = "" }: { value: number; suffix?: string }) {
+  const [display, setDisplay] = useState(0);
+  const ref = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { setDisplay(value); return; }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry?.isIntersecting) return;
+      const start = performance.now();
+      const tick = (time: number) => {
+        const progress = Math.min((time - start) / 900, 1);
+        setDisplay(Math.round(value * (1 - Math.pow(1 - progress, 3))));
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      observer.disconnect();
+    }, { threshold: .4 });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [value]);
+  return <strong ref={ref} className="block text-3xl text-cyan">{display}{suffix}</strong>;
+}
+
 function HomePage() {
   return <>
     <section className="hero-section">
@@ -40,7 +65,7 @@ function HomePage() {
       </div>
     </section>
 
-    <section className="border-b border-border bg-navy text-on-dark"><div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-on-dark/10 px-4 sm:px-6 md:grid-cols-4 lg:px-8">{[["54", "pages de catalogue"], ["30+", "modèles présentés"], ["2", "pays de représentation"], ["4", "familles de solutions"]].map(([n,l]) => <div key={l} className="px-4 py-7 text-center"><strong className="block text-3xl text-cyan">{n}</strong><span className="mt-1 block text-xs text-on-dark-muted">{l}</span></div>)}</div></section>
+    <section className="border-b border-border bg-navy text-on-dark"><div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-on-dark/10 px-4 sm:px-6 md:grid-cols-4 lg:px-8">{[[54, "", "pages de catalogue"], [30, "+", "modèles présentés"], [2, "", "pays de représentation"], [4, "", "familles de solutions"]].map(([n,s,l]) => <div key={l} className="px-4 py-7 text-center"><CountUp value={n as number} suffix={s as string}/><span className="mt-1 block text-xs text-on-dark-muted">{l}</span></div>)}</div></section>
 
     <section className="section"><div className="section-inner"><div className="section-heading"><div><p className="eyebrow">Nos métiers</p><h2>Des solutions adaptées à chaque activité</h2></div><p>De la voiture familiale au matériel de chantier, Kamizia organise la sélection, l'achat et l'acheminement.</p></div><div className="grid gap-px overflow-hidden rounded-md border border-border bg-border md:grid-cols-3">{sectors.map(([title, text, label, Icon]) => <article key={title as string} className="bg-background p-7 transition-transform duration-300 hover:-translate-y-1"><Icon className="mb-8 size-8 text-cyan" /><h3 className="text-xl font-bold">{title as string}</h3><p className="mt-3 text-sm leading-6 text-muted-foreground">{text as string}</p><span className="mt-7 inline-block text-xs font-bold uppercase text-primary">{label as string}</span></article>)}</div></div></section>
 

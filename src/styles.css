@@ -95,6 +95,8 @@
 .form-input:focus { border-color: var(--ring); box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 18%, transparent); outline: none; }
 .filter-chip:hover { border-color: var(--primary); color: var(--primary); }
 .filter-chip-active:hover { color: var(--primary-foreground); }
+.reveal-pending { opacity: 0; transform: translateY(22px); transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1); }
+.reveal-visible { opacity: 1; transform: translateY(0); }
 @media (min-width: 768px) { .section-heading { grid-template-columns: 1fr auto; } }
 @keyframes whatsapp-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.07); } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *,*::before,*::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
