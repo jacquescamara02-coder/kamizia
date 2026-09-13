@@ -23,18 +23,24 @@ export function SiteShell({ children }: { children: ReactNode }) {
   }, []);
   useEffect(() => setOpen(false), [path]);
   useEffect(() => {
-    const sections = Array.from(document.querySelectorAll("main > section"));
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    sections.forEach((section) => section.classList.add("reveal-pending"));
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("reveal-visible");
-        observer.unobserve(entry.target);
-      });
-    }, { threshold: 0.08, rootMargin: "0px 0px -40px" });
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+    let observer: IntersectionObserver | undefined;
+    const timer = window.setTimeout(() => {
+      const sections = Array.from(document.querySelectorAll("main > section"));
+      sections.forEach((section) => section.classList.add("reveal-pending"));
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("reveal-visible");
+          observer?.unobserve(entry.target);
+        });
+      }, { threshold: 0.08, rootMargin: "0px 0px -40px" });
+      sections.forEach((section) => observer?.observe(section));
+    }, 700);
+    return () => {
+      window.clearTimeout(timer);
+      observer?.disconnect();
+    };
   }, [path]);
 
   return (
