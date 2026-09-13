@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Building2, CheckCircle2, FileCheck2, Globe2, ShieldCheck, Truck, type LucideIcon } from "lucide-react";
-import heroVideo from "@/assets/kamizia-hero.mp4.asset.json";
 import cataloguePdf from "@/assets/catalogue-kamizia.pdf.asset.json";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/product-card";
+import { SupercarHeroCarousel } from "@/components/supercar-hero-carousel";
 import { products, whatsappUrl } from "@/lib/catalog";
 import { useEffect, useRef, useState } from "react";
 
@@ -58,7 +58,7 @@ function CountUp({ value, suffix = "" }: { value: number; suffix?: string }) {
 function HomePage() {
   return <>
     <section className="hero-section">
-      <video autoPlay muted loop playsInline poster={products[0]?.image} className="absolute inset-0 h-full w-full object-cover"><source src={heroVideo.url} type="video/mp4" /></video>
+      <SupercarHeroCarousel />
       <div className="hero-overlay" />
       <div className="relative mx-auto flex min-h-[76vh] max-w-7xl items-end px-4 pb-16 pt-28 sm:px-6 md:pb-24 lg:px-8">
         <div className="max-w-4xl text-on-dark"><p className="eyebrow text-cyan">Burkina Faso · Côte d'Ivoire · International</p><h1 className="mt-5 max-w-4xl text-4xl font-extrabold leading-[1.08] sm:text-6xl lg:text-7xl">Votre partenaire automobile et logistique en Afrique de l’Ouest</h1><p className="mt-6 max-w-2xl text-base leading-7 text-on-dark-muted sm:text-lg">Véhicules, engins de chantier, poids lourds et solutions de transport sélectionnés avec rigueur, puis livrés à destination.</p><div className="mt-8 flex flex-wrap gap-3"><Button asChild size="lg"><Link to="/catalogue">Explorer le catalogue <ArrowRight /></Link></Button><Button asChild size="lg" variant="outline" className="border-on-dark/40 bg-on-dark/10 text-on-dark hover:bg-on-dark/20 hover:text-on-dark"><Link to="/contact">Demander un devis</Link></Button></div></div>
