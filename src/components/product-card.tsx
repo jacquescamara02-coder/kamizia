@@ -6,7 +6,7 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <article className="product-card group">
       <Link to="/catalogue/$slug" params={{ slug: product.slug }} className="block">
-        <div className="aspect-[4/3] overflow-hidden bg-muted"><img src={product.image} alt={product.name} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" /></div>
+        <div className="aspect-[4/3] overflow-hidden bg-muted"><img src={product.image} alt={`${product.name}, vue du véhicule ou équipement`} loading="lazy" width={1200} height={900} className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" /></div>
         <div className="p-5">
           <div className="mb-3 flex items-center justify-between gap-3"><span className="eyebrow">{product.category}</span><span className="text-xs font-semibold text-muted-foreground">{product.year}</span></div>
           <h2 className="text-xl font-bold">{product.name}</h2>
