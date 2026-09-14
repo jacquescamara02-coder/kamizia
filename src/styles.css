@@ -102,6 +102,23 @@
 .hero-supercar-dot-active { width: 1.15rem; background: var(--cyan); }
 .reveal-pending { opacity: 0; transform: translateY(22px); transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1); }
 .reveal-visible { opacity: 1; transform: translateY(0); }
+@property --orbit-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+.orbit-border-button, .whatsapp-float, .filter-chip { position: relative; isolation: isolate; }
+.whatsapp-float { position: fixed; }
+.orbit-border-button::after, .whatsapp-float::after, .filter-chip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  pointer-events: none;
+  background: conic-gradient(from var(--orbit-angle), transparent 0% 65%, var(--cyan) 80%, var(--on-dark) 88%, var(--cyan) 94%, transparent 100%);
+  mask: linear-gradient(var(--on-dark) 0 0) content-box, linear-gradient(var(--on-dark) 0 0);
+  mask-composite: exclude;
+  animation: orbit-border 3s linear infinite;
+}
+.orbit-border-button:disabled::after { animation-play-state: paused; opacity: 0; }
+@keyframes orbit-border { to { --orbit-angle: 360deg; } }
 @media (min-width: 768px) { .section-heading { grid-template-columns: 1fr auto; } }
 @keyframes whatsapp-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.07); } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *,*::before,*::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
