@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ferrariImage from "@/assets/hero-supercar-ferrari.jpg";
-import audiImage from "@/assets/hero-supercar-audi.jpg";
-import lexusImage from "@/assets/hero-supercar-lexus.jpg";
+import crimsonImage from "@/assets/hero-supercar-crimson.jpg";
+import midnightImage from "@/assets/hero-supercar-midnight.jpg";
+import graphiteImage from "@/assets/hero-supercar-graphite.jpg";
 
 const slides = [
-  { slug: "ferrari-roma-spider", name: "Ferrari Roma Spider", image: ferrariImage },
-  { slug: "audi-rs5", name: "Audi RS5", image: audiImage },
-  { slug: "lexus-lx600-b6", name: "Lexus LX 600", image: lexusImage },
+  { slug: "grand-tourisme-crimson", name: "Supercar Grand Tourisme rouge", image: crimsonImage },
+  { slug: "coupe-midnight", name: "Supercar Coupé bleu nuit", image: midnightImage },
+  { slug: "gt-graphite", name: "Supercar GT graphite", image: graphiteImage },
 ];
 
 export function SupercarHeroCarousel() {
@@ -46,6 +46,9 @@ export function SupercarHeroCarousel() {
             alt={index === active ? `${slide.name}, sélection prestige Kamizia` : ""}
             className="h-full w-full object-cover object-center"
             loading={index === 0 ? "eager" : "lazy"}
+             fetchPriority={index === 0 ? "high" : "auto"}
+             width={1920}
+             height={1088}
           />
         </figure>
       ))}

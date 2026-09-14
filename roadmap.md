@@ -6,3 +6,4 @@
 - [x] Ajouter devis WhatsApp, FAQ, carte et interactions
 - [x] Vérifier le rendu ordinateur et mobile
 - [x] Remplacer les pages PDF par des photos propres et ajouter les engins professionnels
+- [x] Créer et intégrer trois supercars panoramiques dans le bandeau d’accueil
