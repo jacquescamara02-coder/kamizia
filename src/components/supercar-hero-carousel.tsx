@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import crimsonImage from "@/assets/hero-supercar-crimson.jpg";
 import midnightImage from "@/assets/hero-supercar-midnight.jpg";
 import graphiteImage from "@/assets/hero-supercar-graphite.jpg";
