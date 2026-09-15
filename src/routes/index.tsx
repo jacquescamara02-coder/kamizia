@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Building2, CheckCircle2, FileCheck2, Globe2, ShieldCheck, Truck, type LucideIcon } from "lucide-react";
 import cataloguePdf from "@/assets/catalogue-kamizia.pdf.asset.json";
 import { Button } from "@/components/ui/button";
-import { ProductCard } from "@/components/product-card";
+import { ProductQuickView } from "@/components/product-quick-view";
 import { SupercarHeroCarousel } from "@/components/supercar-hero-carousel";
 import { products, whatsappUrl } from "@/lib/catalog";
 import { useEffect, useRef, useState } from "react";
