@@ -21,8 +21,6 @@ export function SupercarHeroCarousel() {
     return () => window.clearInterval(timer);
   }, [paused]);
 
-  const previous = () => setActive((current) => (current - 1 + slides.length) % slides.length);
-  const next = () => setActive((current) => (current + 1) % slides.length);
 
   return (
     <div
