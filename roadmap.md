@@ -7,3 +7,5 @@
 - [x] Vérifier le rendu ordinateur et mobile
 - [x] Remplacer les pages PDF par des photos propres et ajouter les engins professionnels
 - [x] Créer et intégrer trois supercars panoramiques dans le bandeau d’accueil
+- [ ] Ajouter le retour sur les pages intérieures, la FAQ et la localisation sur l’accueil
+- [ ] Préparer les avis clients ; témoignages authentiques et position exacte à fournir
