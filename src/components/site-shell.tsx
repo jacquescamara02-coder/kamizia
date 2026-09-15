@@ -1,5 +1,5 @@
-import { Link, useRouterState } from "@tanstack/react-router";
-import { ArrowUp, Mail, MapPin, Menu, MessageCircle, Phone, X } from "lucide-react";
+import { Link, useRouter, useRouterState } from "@tanstack/react-router";
+import { ArrowLeft, ArrowUp, Mail, MapPin, Menu, MessageCircle, Phone, X } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 import logoAsset from "@/assets/kamizia-logo.jpeg.asset.json";
 import { Button } from "@/components/ui/button";
@@ -13,6 +13,7 @@ const nav = [
 ] as const;
 
 export function SiteShell({ children }: { children: ReactNode }) {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [showTop, setShowTop] = useState(false);
   const path = useRouterState({ select: (state) => state.location.pathname });
@@ -58,7 +59,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
         </div>
         {open && <nav className="border-t border-border bg-background px-4 py-4 lg:hidden">{nav.map((item) => <Link key={item.to} to={item.to} className="block border-b border-border/60 py-3 text-sm font-semibold">{item.label}</Link>)}</nav>}
       </header>
-      <main>{children}</main>
+      <main>{path !== "/" && <div className="border-b border-border bg-muted"><div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8"><Button variant="ghost" size="sm" onClick={() => { if (router.history.canGoBack()) router.history.back(); else void router.navigate({ to: "/" }); }}><ArrowLeft />Retour</Button></div></div>}{children}</main>
       <footer className="bg-navy text-on-dark">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-3 lg:px-8">
           <div><img src={logoAsset.url} alt="Kamizia" className="mb-5 h-14 w-auto rounded-sm bg-surface p-1" /><p className="max-w-sm text-sm leading-7 text-on-dark-muted">Importation, vente, distribution automobile et solutions logistiques entre le Burkina Faso, la Côte d'Ivoire et l'international.</p></div>

@@ -4,6 +4,7 @@ import cataloguePdf from "@/assets/catalogue-kamizia.pdf.asset.json";
 import { Button } from "@/components/ui/button";
 import { ProductQuickView } from "@/components/product-quick-view";
 import { SupercarHeroCarousel } from "@/components/supercar-hero-carousel";
+import { HomeInformation } from "@/components/home-information";
 import { products, whatsappUrl } from "@/lib/catalog";
 import { useEffect, useRef, useState } from "react";
 
@@ -75,6 +76,7 @@ function HomePage() {
 
     <section className="bg-navy py-16 text-on-dark"><div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 md:grid-cols-3 lg:px-8">{promises.map(([Icon,t,d]) => <div key={t} className="flex gap-4"><Icon className="size-7 shrink-0 text-cyan"/><div><h3 className="font-bold">{t}</h3><p className="mt-2 text-sm leading-6 text-on-dark-muted">{d}</p></div></div>)}</div></section>
 
+    <HomeInformation />
     <section className="section"><div className="section-inner grid gap-10 rounded-md bg-primary px-6 py-10 text-primary-foreground md:grid-cols-[1fr_auto] md:items-center md:px-10"><div><p className="text-sm font-bold uppercase text-cyan">Un projet précis ?</p><h2 className="mt-2 text-3xl font-bold">Recevez une proposition personnalisée</h2><p className="mt-3 max-w-2xl text-sm opacity-80">Décrivez le véhicule, l'engin ou la solution de transport recherchée. Notre équipe vous répond sur WhatsApp.</p></div><Button asChild size="lg" variant="secondary"><a href={whatsappUrl("Bonjour Kamizia, je souhaite demander un devis personnalisé.")} target="_blank" rel="noreferrer">Parler à un conseiller <CheckCircle2 /></a></Button></div></section>
   </>;
 }
