@@ -9,5 +9,6 @@
 - [x] Créer et intégrer trois supercars panoramiques dans le bandeau d’accueil
 - [x] Ajouter et vérifier le retour sur les pages intérieures, la FAQ et la carte du quartier sur l’accueil
 - [x] Ajouter la section Avis clients et le lien de partage WhatsApp
+- [x] Ajouter les engagements animés avant la section Avis clients
 - [ ] Activer le défilement des avis : en attente de témoignages authentiques
 - [ ] Pointer la carte sur le bureau : en attente du lien Google Maps exact

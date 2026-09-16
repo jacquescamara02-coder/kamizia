@@ -1,5 +1,6 @@
 import { ChevronDown, MapPin, MessageCircle, Navigation, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ServiceCommitments } from "@/components/service-commitments";
 import { whatsappUrl } from "@/lib/catalog";
 
 const questions = [
@@ -12,6 +13,7 @@ const questions = [
 
 export function HomeInformation() {
   return <>
+    <ServiceCommitments />
     <section className="section bg-muted" id="avis-clients" aria-labelledby="avis-title">
       <div className="section-inner">
         <div className="section-heading"><div><p className="eyebrow">Votre expérience compte</p><h2 id="avis-title">Avis clients</h2></div></div>
