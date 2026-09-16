@@ -107,7 +107,8 @@
 .commitment-progress { inset: 12%; width: 76%; height: 76%; transform: rotate(-90deg); }
 .commitment-progress-track, .commitment-progress-value { fill: none; stroke-width: 9; }
 .commitment-progress-track { stroke: color-mix(in oklab, var(--on-dark) 14%, transparent); }
-.commitment-progress-value { stroke: var(--cyan); stroke-linecap: round; stroke-dasharray: 100; stroke-dashoffset: 100; animation: commitment-progress 1.4s .2s cubic-bezier(.2,.8,.2,1) forwards; }
+.commitment-progress-value { stroke: var(--cyan); stroke-linecap: round; stroke-dasharray: 100; stroke-dashoffset: 100; }
+.commitment-ring-active .commitment-progress-value { animation: commitment-progress 1.4s .2s cubic-bezier(.2,.8,.2,1) forwards; }
 .commitment-ring-silver .commitment-progress-value { stroke: var(--on-dark-muted); }
 .commitment-ring-white .commitment-progress-value { stroke: var(--on-dark); }
 .commitment-value { position: relative; z-index: 1; color: var(--on-dark); font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1; }

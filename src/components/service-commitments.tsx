@@ -56,8 +56,27 @@ function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
 }
 
 function ProgressRing({ value, suffix, tone }: { value: number; suffix: string; tone: "cyan" | "silver" | "white" }) {
+  const [active, setActive] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setActive(true);
+      return;
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry?.isIntersecting) return;
+      setActive(true);
+      observer.disconnect();
+    }, { threshold: 0.45 });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className={`commitment-ring commitment-ring-${tone}`}>
+    <div ref={ref} className={`commitment-ring commitment-ring-${tone}${active ? " commitment-ring-active" : ""}`}>
       <svg className="commitment-halo" viewBox="0 0 220 220" aria-hidden="true">
         {[
           [110, 8], [161, 22], [198, 60], [212, 110], [198, 160], [161, 198],
